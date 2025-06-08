@@ -30,7 +30,7 @@ int main(){
                 scanf("%s", itemEsc);
 
                 //If e else de acordo com a escolha do produto
-                if (strcmp(itemEsc, "Alface") == 0)
+                if (strcmp(itemEsc, "Alface") == 0)//Verifica se a palavra esta escrita corretamente
                 {
                     count++;// Contagem para saber a ordem que esse produto está sendo adicionado ao carrinho e demais arrays necessárias
                     printf("Quantas gramas de alface você quer?\n");
