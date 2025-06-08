@@ -1,0 +1,643 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+
+    //Declaração das variáveis
+    int setor, escolha1, escolha2, count = -1, setorValido = 0, car, clube, formaPag, parcela, pagamentoFeito=0;
+    char carinho[1000][50] = {}, itemEsc[50], unidades[1000][10] = {};
+    double grama, kg, totalProd=0, pesos[1000]={}, totalPro[1000]={}, valorFinal = 0, valorParcela = 0;
+
+    printf("Bem Vindo ao Mercadinho da Felicidade! \nO que deseja comprar hoje?");
+
+    do //Início do loop para fazer compras
+    {   
+        do //Loop interno para a escolha do setor
+        {
+        printf("\nDigite um número e será redirecionado para o setor que deseja.\n");
+        printf("[1]Hortifruti \n[2]Higiene e Limpeza \n[3]Frios e Laticínios \n[4]Adega e Bebidas \n[5]Açougue \n[6]Mercearia\n");
+        scanf("%d", &setor);
+
+        switch (setor) //Switch para a escolha do setor
+        {
+        case 1:
+            setorValido = 1;
+            printf("Bem Vindo Hortifruti\n");
+            do //Loop para comprar itens no setor escolhido
+            {
+                printf("Digite o NOME do item para adicionar no seu carrinho.\n");
+                printf("1.Alface R$4,99 \n2.Laranja R$5,50 \n3.Brócolis R$7,85 \n4.Batata R$4,00 \n5.Morango R$9,45\n");
+                scanf("%s", itemEsc);
+
+                //If e else de acordo com a escolha do produto
+                if (strcmp(itemEsc, "Alface") == 0)
+                {
+                    count++;// Contagem para saber a ordem que esse produto está sendo adicionado ao carrinho e demais arrays necessárias
+                    printf("Quantas gramas de alface você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000; //Transformação em quilos 
+                    totalProd = 4.99 * kg ; //Total do produto de acordo com os quilos
+                    pesos[count] = kg; //Adiciona o total de kg do produto na ordem da contagem
+                    totalPro[count]= totalProd; //Adiciona o total do produto na ordem da contagem
+                    strcpy(carinho[count], itemEsc); //Adiciona o nome do produto na ordem da contagem
+                    strcpy(unidades[count], "kg"); //Adiciona o valor da unidade que é utilizada nesse produto na ordem da contagem
+                    //OBS: Esse valor de contagem é essencial para deixar todos os valores "conectados". Facilitando na chamada dos mesmos.
+                    //ATENÇÃO!!!! Essa sequência de códigos será repetido para os demais produtos nos demais setores do mercado.
+                }else if (strcmp(itemEsc, "Laranja") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de laranja você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 5.50 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Brócolis") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de brócolis você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 7.85 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Batata") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de batata você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 4.00 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Morango") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de morango você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 9.45 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }else{
+                    printf("Nome escrito incorretamente, escreva novamente o nome do produto que deseja.\nLembre-se de escrever igual está aparecendo nas opções.\n");
+                }
+                
+                printf("[1]Continuar \n[2]Sair do Setor\n"); //Escolha entre continua comprando no setor ou sair dele
+                scanf("%d", &escolha1);
+            } while (escolha1 != 2);
+            
+            break;
+        case 2:
+            setorValido = 1;
+            printf("Bem Vindo Higiene e Limpeza\n");
+
+            do
+            {
+                printf("Digite o NOME do item para adicionar no seu carrinho.\n");
+                printf("1.Cotonete R$9,94\n2.Kiboa R$12,80 \n3.Desinfetante R$25,90 \n4.Desodorante R$8,99 \n5.Esponja R$11,00\n");
+                scanf("%s", itemEsc);
+
+                if (strcmp(itemEsc, "Cotonete") == 0)
+                {
+                    count++;
+                    printf("Quantas caixas de cotonete você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 9.94 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "un");
+                }else if (strcmp(itemEsc, "Kiboa") == 0)
+                {
+                    count++;
+                    printf("Quantos litros de kiboa você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 12.80 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "L");
+                }
+                else if (strcmp(itemEsc, "Desinfetante") == 0)
+                {
+                    count++;
+                    printf("Quantos litros de desinfetante você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 25.90 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "L");
+                }
+                else if (strcmp(itemEsc, "Desodorante") == 0)
+                {
+                    count++;
+                    printf("Quantas unidades de desodorantes quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 8.99 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "un");
+                }
+                else if (strcmp(itemEsc, "Esponja") == 0)
+                {
+                    count++;
+                    printf("Quantas unidades de esponjas você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 11 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "un");
+                }else{
+                    printf("Nome escrito incorretamente, escreva novamente o nome do produto que deseja.\nLembre-se de escrever igual está aparecendo nas opções.\n");
+                }
+                
+                printf("[1]Continuar \n[2]Sair do Setor\n");
+                scanf("%d", &escolha1);
+            } while (escolha1 != 2);
+
+            break;
+        case 3:
+            setorValido = 1;
+            printf("Bem Vindo Frios e Laticínios");
+            do
+            {
+                printf("Digite o NOME do item para adicionar no seu carrinho.\n");
+                printf("1.Leite R$3,99 \n2.Queijo R$5,50 \n3.Salame R$8,85 \n4.Manteiga R$10,50 \n5.Sorvete R$19,45\n");
+                scanf("%s", itemEsc);
+
+                if (strcmp(itemEsc, "Leite") == 0)
+                {
+                    count++;
+                    printf("Quanos litros de leite você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 3.99 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "L");
+                }else if (strcmp(itemEsc, "Queijo") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de queijo você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 5.50 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Salame") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de salame você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 8.85 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Manteiga") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de manteiga você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 10.50 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Sorvete") == 0)
+                {
+                    count++;
+                    printf("Quantos potes de sorvete você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 19.45 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "un");
+                }else{
+                    printf("Nome escrito incorretamente, escreva novamente o nome do produto que deseja.\nLembre-se de escrever igual está aparecendo nas opções.\n");
+                }
+                
+                printf("[1]Continuar \n[2]Sair do Setor\n");
+                scanf("%d", &escolha1);
+            } while (escolha1 != 2);
+            break;
+        case 4:
+            setorValido = 1;
+            printf("Bem Vindo a Adega e Bebidas\n");
+            do
+            {
+                printf("Digite o NOME do item para adicionar no seu carrinho.\n");
+                printf("1.Vinho R$64,99 \n2.Cerveja R$7,50 \n3.Refrigerante R$9,85 \n4.Suco R$6,50 \n5.Champagnes R$49,45\n");
+                scanf("%s", itemEsc);
+
+                if (strcmp(itemEsc, "Vinho") == 0)
+                {
+                    count++;
+                    printf("Quantas garrafas de vinho você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 64.99 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "un");
+                }else if (strcmp(itemEsc, "Cerveja") == 0)
+                {
+                    count++;
+                    printf("Quantas latas de cerveja você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 7.50 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "un");
+                }
+                else if (strcmp(itemEsc, "Refrigerante") == 0)
+                {
+                    count++;
+                    printf("Quantas garrafas de refrigerante você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 9.85 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "un");
+                }
+                else if (strcmp(itemEsc, "Suco") == 0)
+                {
+                    count++;
+                    printf("Quantos litros de suco você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 6.50 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "L");
+                }
+                else if (strcmp(itemEsc, "Champagnes") == 0)
+                {
+                    count++;
+                    printf("Quantas garrafas de champagnes você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 49.45 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "un");
+                }else{
+                    printf("Nome escrito incorretamente, escreva novamente o nome do produto que deseja.\nLembre-se de escrever igual está aparecendo nas opções.\n");
+                }
+                
+                printf("[1]Continuar \n[2]Sair do Setor\n");
+                scanf("%d", &escolha1);
+            } while (escolha1 != 2);
+            break;
+        case 5:
+            setorValido = 1;
+            printf("Bem Vindo ao Açougue\n");
+            do
+            {
+                printf("Digite o NOME do item para adicionar no seu carrinho.\n");
+                printf("1.Picanha R$77,90 \n2.Alcatra R$34,99 \n3.Xixo R$19,99 \n4.Costelinha R$54,00 \n5.Sassami R$17,98\n");
+                scanf("%s", itemEsc);
+
+                if (strcmp(itemEsc, "Picanha") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de picanha você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 77.90 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }else if (strcmp(itemEsc, "Alcatra") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de alcatra você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 34.99 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Xixo") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de xixo você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 19.99 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Costelinha") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de costela suína você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 54.00 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Sassami") == 0)
+                {
+                    count++;
+                    printf("Quantas gramas de sassami você quer?\n");
+                    scanf("%lf", &grama);
+                    kg = grama/1000;
+                    totalProd = 17.98 * kg ;
+                    pesos[count] = kg;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }else{
+                    printf("Nome escrito incorretamente, escreva novamente o nome do produto que deseja.\nLembre-se de escrever igual está aparecendo nas opções.\n");
+                }
+                
+                printf("[1]Continuar \n[2]Sair do Setor\n");
+                scanf("%d", &escolha1);
+            } while (escolha1 != 2);
+
+            break;
+        case 6:
+            setorValido = 1;
+            printf("Bem Vindo Mercearia");
+            do
+            {
+                printf("Digite o NOME do item para adicionar no seu carrinho.\n");
+                printf("1.Arroz R$14,99 \n2.Feijão R$15,50 \n3.Macarrão R$12.98 \n4.Açucar R$9,00 \n5.Óleo R$9,45\n");
+                scanf("%s", itemEsc);
+
+                if (strcmp(itemEsc, "Arroz") == 0)
+                {
+                    count++;
+                    printf("Quantos quilos de arroz você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 14.99 * grama;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }else if (strcmp(itemEsc, "Feijão") == 0)
+                {
+                    count++;
+                    printf("Quantos quilos de feijão você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 15.50 * grama;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Macarrão") == 0)
+                {
+                    count++;
+                    printf("Quantos quilos de macarrão você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 12.98 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Açucar") == 0)
+                {
+                    count++;
+                    printf("Quantos quilos de açucar você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 9.00 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "kg");
+                }
+                else if (strcmp(itemEsc, "Óleo") == 0)
+                {
+                    count++;
+                    printf("Quantos litros de óleo você quer?\n");
+                    scanf("%lf", &grama);
+                    totalProd = 9.45 * grama ;
+                    pesos[count] = grama;
+                    totalPro[count]= totalProd;
+                    strcpy(carinho[count], itemEsc);
+                    strcpy(unidades[count], "L");
+                }else{
+                    printf("Nome escrito incorretamente, escreva novamente o nome do produto que deseja.\nLembre-se de escrever igual está aparecendo nas opções.\n");
+                }
+                
+                printf("[1]Continuar \n[2]Sair do Setor\n");
+                scanf("%d", &escolha1);
+            } while (escolha1 != 2);
+            break;
+        default:
+            printf("Setor inválido. Por favor, digite um número entre 1 e 6.\n");
+            break;
+        }
+        } while (!setorValido);
+        
+        
+
+
+        if(strlen(carinho[0]) > 0){ //Mostrar o carrinho de compras de acordo com os produtos adicionados. Essa opção só aparece se pelo menos um produto for adicionado.
+            printf("Você quer ver seu carinho? \n[1]Sim \n[2]Não\n");
+            scanf("%d", &car);
+
+            switch (car)
+            {
+            case 1:
+                printf("\n%-10s | %-15s | %-10s\n", "Peso", "Produto", "Total"); //Printf para deixar o carrinho com uma visualização melhor
+                printf("-----------------------------------------------\n");
+                totalProd = 0;
+                for (int i = 0; i <= count; i++){ //For para acessar todas as informações que precisam ser aparesentadas: peso, unidade, nome e total.
+
+                    if ((int)pesos[i] == pesos[i]) {// para aparecer de maneiras diferentes o valor de peso, quando houver número após a vírgula ou não
+                    printf("%d%s          | %-15s | R$%-8.2lf\n", (int)pesos[i], unidades[i], carinho[i], totalPro[i]);
+                    } else {
+                    printf("%.3lf%s       | %-15s | R$%-8.2lf\n", pesos[i], unidades[i], carinho[i], totalPro[i]);
+                    }
+
+                    totalProd += totalPro[i]; //Somar os valores do produto para obter o valor total dos produtos
+                }
+                printf("-----------------------------------------------\n");
+                printf("%-28s R$%-8.2lf\n", "Total da Compra:", totalProd);
+                break;
+
+                case 2:
+                break;
+
+                default:
+                    printf("Número inválido.");
+                break;
+            }
+        }
+        
+
+        do {// Escolha de ir para outro setor, finalizar sua compra ou apenas sair do mercado.
+            printf("\n[1] Ir para outro setor \n[2] Finalizar a Compra \n[3] Sair do mercado\n");
+            scanf("%d", &escolha2);
+
+            if (escolha2 < 1 || escolha2 > 3) {
+                printf("Opção inválida! Por favor, digite 1, 2 ou 3.\n");
+            }
+
+        } while (escolha2 < 1 || escolha2 > 3);
+
+    } while (escolha2 != 2 && escolha2 != 3);
+
+    switch (escolha2) //Início do processo de finalizar a comprar
+    {
+    case 2:
+        do
+        {
+            printf("Valor total da compra: R$%.2lf \n", totalProd);
+            printf("Você faz parte do Clube Mercadinho da Felicidade? \n[1]Sim \n[2]Não\n"); 
+            scanf("%d", &clube);
+            switch (clube)//Switch caso faça parte ou não do clube do mercado
+            {
+            case 1:
+                do
+                {
+                    printf("Você possui um desconto de 10%%. \nQual a forma de pagamento?. \n[1]À Vista \n[2]A Prazo\n");
+                    scanf("%d", &formaPag);
+                    if(formaPag == 1){ //If e else da forma de pagamento
+                        printf("Pagando a vista você recebe mais 10%% de desconto!\n");
+                        valorFinal = totalProd * (1- 20.0/100); //Calcula os valores de acordo com o desconto
+                        printf("O valor da sua compra final ficou R$%.2lf \n",valorFinal);
+                        printf("Muito obrigado por escolher comprar aqui.\n");
+                        pagamentoFeito = 1; //Ajuda a definir se vai apresentar ou não nota fiscal
+                    }else if (formaPag == 2)
+                    {
+                        printf("Você deseja parcelar em quantas vezes?\n");
+                        scanf("%d", &parcela);
+                        valorFinal = totalProd * (1- 10.0/100); //Calcula os valores de acordo com o desconto
+                        printf("O valor da sua compra final ficou R$%.2lf \n",valorFinal);
+                        valorParcela = valorFinal / parcela; //Calcular o valor das parcelas
+                        printf("As sua parcelas ficaram %dx de R$%.2lf \n",parcela,valorParcela);
+                        printf("Muito obrigado por escolher comprar aqui.\n");
+                        pagamentoFeito = 1;
+                    }else{
+                        printf("Digite um número válido.");
+                    }
+                } while (formaPag < 1 || formaPag > 2);
+                
+                break;
+            case 2:
+                do
+                {
+                    printf("Qual a forma de pagamento?. \n[1]À Vista \n[2]A Prazo\n");
+                    scanf("%d", &formaPag);
+                    if(formaPag == 1){
+                        printf("Pagando a vista você recebe 10%% de desconto!\n");
+                        valorFinal = totalProd * (1- 10.0/100);//Calcula os valores de acordo com o desconto
+                        printf("O valor da sua compra final ficou R$%.2lf \n",valorFinal);
+                        printf("Muito obrigado por escolher comprar aqui.\n");
+                        pagamentoFeito = 1;
+                    }else if (formaPag == 2)
+                    {
+                        printf("Você deseja parcelar em quantas vezes?\n");
+                        scanf("%d", &parcela);
+                        valorFinal = totalProd; //Nesse caso não tem desconto, apenas atribuo o valor total dos produtos como valor final
+                        printf("O valor da sua compra final é R$%.2lf \n",valorFinal);
+                        valorParcela = valorFinal / parcela; //Calcular o valor das parcelas
+                        printf("As sua parcelas ficaram %dx de R$%.2lf \n",parcela,valorParcela);
+                        printf("Muito obrigado por escolher comprar aqui.\n");
+                        pagamentoFeito = 1;
+                    }else{
+                        printf("Digite um número válido.\n");
+                    }
+                } while (formaPag < 1 || formaPag > 2);
+                
+                break;
+            default:
+                printf("Digite um número válido.\n");
+                break;
+            }
+
+        } while (clube < 1 || clube > 2);
+        break;
+    case 3:
+        printf("Você não quis finalizar a comprar :(\n Espero que da próxima vez tudo de certo. \n");
+        break;
+    default:
+        printf("Digite um número válido.");
+        break;
+    }
+
+    if (pagamentoFeito == 1) //Apresentar a nota fiscal apenas se o pagamento for efetuado
+    {
+        printf("\n\n================= NOTA FISCAL =================\n"); //Printf para deixar a visualização mais bonita
+        printf("%-10s | %-15s | %-10s\n", "Peso", "Produto", "Total");
+        printf("-----------------------------------------------\n");
+        double totalProd2 = 0;
+        for (int i = 0; i <= count; i++){
+
+            if ((int)pesos[i] == pesos[i]) {
+            printf("%d%s          | %-15s | R$%-8.2lf\n", (int)pesos[i], unidades[i], carinho[i], totalPro[i]);
+            } else {
+            printf("%.3lf%s       | %-15s | R$%-8.2lf\n", pesos[i], unidades[i], carinho[i], totalPro[i]);
+            }
+
+            totalProd2 += totalPro[i]; //Coloquei um totalProd2 para não puxar um valor já alterado do totalProd, mas faz a mesma função do totalProd
+        }
+
+        printf("-----------------------------------------------\n");
+        printf("%-28s R$%-8.2lf\n", "Total da Compra:", totalProd2);
+
+        if (clube == 1 && formaPag == 1)//If e else para apresentar os descontos aplicados
+        printf("%-28s -20%%\n", "Desconto Clube + À Vista:");
+        else if (clube == 1)
+            printf("%-28s -10%% (Clube)\n", "Desconto:");
+        else if (clube == 2 && formaPag == 1)
+            printf("%-28s -10%% (À Vista)\n", "Desconto:");
+        else
+            printf("%-28s -\n", "Desconto:");
+
+        printf("%-28s R$%.2lf\n", "Valor Final:", valorFinal);
+
+        if (formaPag == 2)
+            printf("%-28s %dx de R$%.2lf\n", "Pagamento Parcelado:", parcela, valorParcela);
+        else
+            printf("%-28s À Vista\n", "Pagamento:");
+
+        printf("===============================================\n");
+        printf("        Obrigado por comprar conosco!  \n");
+    }
+    
+        
+
+   
+    printf("Volte sempre!!!");
+
+    return 0;
+}
